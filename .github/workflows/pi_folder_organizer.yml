@@ -1,5 +1,5 @@
 
-name: Publish Python 🐍 distribution 📦 to PyPI 
+name: Publish Python Package pi-folder-organizer to PyPI 
 
 on: 
   push:
