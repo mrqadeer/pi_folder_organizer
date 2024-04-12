@@ -5,6 +5,36 @@ from ._exceptions import DangerZone
 from ._exceptions import DestinationInsideSourceError
 
 class PiFolderOrganizer:
+    """
+    A class for organizing files based on their types into separate folders.
+
+    Attributes:
+    - counter (dict): A dictionary that stores the count of files for each category.
+    - extensions (dict): A dictionary that maps file categories to their corresponding extensions.
+
+    Methods:
+    - get_counter(): Returns the current counter dictionary.
+    - set_counter(new_counter: dict): Updates the counter dictionary with a new one.
+    - get_extensions(): Returns the current extensions dictionary.
+    - set_extensions(new_extensions: dict): Updates the extensions dictionary with a new one.
+    - pi_organizer(source_path, destination_path): Organizes files from source_path into separate folders in destination_path
+      based on their types according to the extensions dictionary.
+
+    Usage:
+    - Create an instance of PiFolderOrganizer.
+    - Customize the counter and extensions dictionaries if needed.
+    - Use the pi_organizer method to organize files from source_path into separate folders in destination_path.
+
+    Example:
+    ```
+    pi_organizer = PiFolderOrganizer()
+    new_counter = {"Images": [], "Documents": []}
+    pi_organizer .set_counter(new_counter)
+    new_extensions = {"Images": (".png", ".jpg"), "Documents": (".txt", ".docs")}
+    pi_organizer .set_extensions(new_extensions)
+    pi_organizer .pi_organizer(source_path, destination_path)
+    ```
+    """
     
     def __init__(self) -> None:
         # System paths for Linux | Windows | MacOS
@@ -102,16 +132,77 @@ class PiFolderOrganizer:
         return os.path.commonpath([parent_path, child_path]) == parent_path
 
     def get_counter(self):
+        """
+        Returns the current file counter dictionary used by PiFolderOrganizer.
+
+        Returns:
+        ------
+            dict: The current file counter dictionary.
+
+        Example:
+        ------
+            >>> pi_organizer = PiFolderOrganizer()
+            >>> counter = pi_organizer.get_counter()
+        """
+
         return self.__counter
 
     def set_counter(self, new_counter: dict) -> dict:
+        """
+        Sets a new file counter dictionary for PiFolderOrganizer.
+
+        Args:
+        ______
+            new_counter (dict): The new file counter dictionary to set.
+
+        Returns:
+        ______
+            dict: The updated file counter dictionary.
+
+        Example:
+        ------
+            >>> pi_organizer = PiFolderOrganizer()
+            >>> new_counter = {"Images": [], "Documents": []}
+            >>> pi_organizer.set_counter(new_counter)
+            >>> counter = pi_organizer.get_counter()
+        """
         new_counter["Others"] = []
         self.__counter = new_counter
 
     def get_extensions(self):
+        """
+        Returns the current file extensions dictionary used by PiFolderOrganizer.
+
+        Returns:
+        ------
+            dict: The current file extensions dictionary.
+
+        Example:
+        ------
+            >>> pi_organizer = PiFolderOrganizer()
+            >>> extensions = pi_organizer.get_extensions()
+        """
         return self.__extensions
 
     def set_extensions(self, new_extensions: dict) -> dict:
+        """
+        Sets a new file extensions dictionary for PiFolderOrganizer.
+
+        Args:
+        ------
+            new_extensions (dict): The new file extensions dictionary to set.
+
+        Returns:
+        ------
+            dict: The updated file extensions dictionary.
+
+        Example:
+        ------
+            >>> pi_organizer = PiFolderOrganizer()
+            >>> new_extensions = {"Images": (".png", ".jpg"), "Documents": (".txt", ".docs")}
+            >>> pi_organizer.set_extensions(new_extensions)
+            >>> extensions = pi_organizer.get_extensions()
+        """
         self.__extensions = new_extensions
 
     def __move_files(self, category, file_paths, destination_path):
@@ -124,6 +215,44 @@ class PiFolderOrganizer:
         print(20 * "+-*-+")
 
     def pi_folder_organizer(self, source_path: str, destination_path: str) -> None:
+        """
+        Organizes files from the source_path into separate folders in the destination_path based on their types.
+
+        Parameters:
+        ------
+        - source_path (str): The path to the folder containing the files to be organized.
+        - destination_path (str): The path to the folder where the organized files will be stored.
+
+        Returns:
+        ------
+        - None
+
+        Raises:
+        ------
+        - NotADirectoryError: If source_path is not a directory.
+
+        Usage:
+        ------
+        - Create an instance of PiFolderOrganizer.
+        - Set the counter and extensions dictionaries if needed.
+        - Call this method with the source_path and destination_path to organize files accordingly.
+
+        Example Default:
+        ------
+        
+        >>> pi_organizer = PiFolderOrganizer() 
+        >>> pi_organizer.pi_organizer("/path/to/source_folder", "/path/to/destination_folder")
+        
+        Example Custom:
+        ------
+        >>> pi_organizer = PiFolderOrganizer() 
+        >>> new_counter = {"Images": [], "Documents": []}
+        >>> pi_organizer.set_counter(new_counter)
+        >>> new_extensions = {"Images": (".png", ".jpg"), "Documents": (".txt", ".docs")}
+        >>> pi_organizer.set_extensions(new_extensions)
+        >>> pi_organizer.pi_organizer("/path/to/source_folder", "/path/to/destination_folder")
+        
+        """
         # Normalize paths
         source_path = os.path.abspath(source_path)
         destination_path = os.path.abspath(destination_path)
