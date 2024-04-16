@@ -60,8 +60,8 @@ class PiFolderOrganizer:
                 "LogFiles":[],
                 "FontsFiles":[],
                 "SerializedFiles": [],
-                "WebFiles": [],
-                "GitRepos": [],
+                "WebURLs": [],
+                
                 "AndroidAPKs": [],
                 "ISOsFiles":[],
                 "VirtualMachinesFiles":[],
@@ -92,8 +92,8 @@ class PiFolderOrganizer:
                 "LogFiles": (".log",".syslog",".eventlog"),
                 "FontsFiles": (".woff",".woff2",".otf",".ttf",".ps",".pfb",".pfm",".font"),
                 "DatabaseFiles": (".sqlite",".db",".sql"),
-                "WebFiles": (".html",".htm",".shtml", ".xhtml"),
-                "GitRepos": (".git"),
+                "WebURLs": (".html",".htm",".shtml", ".xhtml"),
+                
                 "AndroidAPKs": (".apk",".xapk"),
                 "ISOsFiles": (".iso"),
                 "JupyterNotebooks": (".ipynb"),
@@ -102,7 +102,7 @@ class PiFolderOrganizer:
                         '.vbox', '.vbox-prev', '.vbox-extpack', '.ovf', '.ova',
                         '.vbox-snAPSHOT', '.sav',
                         '.log','.vbox-tmp', '.vdi-tmp', '.cdr'),
-                "SerializedFiles": (".json", ".pkl", ".npy", ".joblib")
+                "SerializedFiles": (".json", ".pkl", ".npy", ".joblib",".pth",".h5")
             }
 
     @staticmethod
